@@ -3,3 +3,6 @@ test_env/
 *.dylib
 *.so
 *.map
+
+.DS_Store
+env/

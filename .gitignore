@@ -1,0 +1,5 @@
+# Ignore virtual environments
+test_env/
+*.dylib
+*.so
+*.map

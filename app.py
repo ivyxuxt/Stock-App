@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pandas_datareader as data
 import yfinance as yf
-from keras.models import load_model
+from keras.models import load_model # type: ignore
 import streamlit as st
 
 # Define the date range and stock ticker
@@ -69,7 +69,12 @@ data_training_array = scaler.fit_transform(data_training)
 
 
 # load the model
-model = load_model('keras_model.keras', compile=False)
+import os
+from keras.models import load_model # type: ignore
+
+model_path = os.path.join(os.path.dirname(__file__), 'keras_model.keras')
+model = load_model(model_path, compile=False)
+
 
 #testing part
 past_100_days = data_training.tail(100)

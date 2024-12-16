@@ -66,19 +66,26 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 data_training_array = scaler.fit_transform(data_training)
 
 
-# model
 import os
-from keras.models import load_model  # type: ignore
+from keras.models import load_model
 
+# Resolve the model path
 model_path = os.path.join(os.path.dirname(__file__), 'keras_model.keras')
-print("Resolved Model Path:", model_path)  # Debugging
+print("Resolved Model Path:", model_path)
 
 # Check if the file exists
 if not os.path.isfile(model_path):
     raise FileNotFoundError(f"Model file not found at: {model_path}")
+else:
+    print("Model file found. Loading the model...")
 
 # Load the model
-model = load_model(model_path, compile=False)
+try:
+    model = load_model(model_path, compile=False)
+    print("Model loaded successfully!")
+except Exception as e:
+    print(f"Error loading model: {e}")
+    raise
 
 
 #testing part
